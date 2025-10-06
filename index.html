@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Abner Filmhouse — Videography & Photography</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  window.tailwind = window.tailwind || {};
+  tailwind.config = { darkMode: "class" };
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
   <meta name="description" content="Abner Filmhouse — Story‑driven videography and photography for weddings, quinceañeras, and ministry in the Bay Area. Español/English."/>
     <!-- Canonical & Social Preview -->
   <link rel="canonical" href="https://abnerfilmhouse.com" />
@@ -28,10 +32,20 @@
     .glass { background: rgba(255,255,255,.75); backdrop-filter: blur(8px); }
     .dark .glass { background: rgba(20,20,20,.6); }
   </style>
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (saved === 'dark' || (!saved && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
 </head>
-<body class="bg-white text-zinc-900 selection:bg-zinc-900 selection:text-white">
+<body class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 selection:bg-zinc-900 selection:text-white">
   <!-- NAV -->
-  <nav class="sticky top-0 z-40 border-b border-zinc-200 bg-white/80 backdrop-blur">
+  <nav class="sticky top-0 z-40 border-b border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/70 backdrop-blur">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <div class="h-9 w-9 rounded-2xl bg-zinc-900 text-white grid place-items-center shadow">
@@ -39,7 +53,7 @@
         </div>
         <div>
           <p class="font-semibold leading-tight">Abner Filmhouse</p>
-          <p class="text-xs text-zinc-500">Videography & Photography</p>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400">Videography & Photography</p>
         </div>
       </div>
       <div class="hidden md:flex items-center gap-6 text-sm">
@@ -51,67 +65,78 @@
       </div>
       <div class="flex items-center gap-2">
         <a href="#contact" class="px-4 py-2 rounded-2xl bg-zinc-900 text-white hover:opacity-90">Book Now</a>
+        <button id="themeToggle" class="px-3 py-2 rounded-2xl border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-800" aria-label="Toggle theme">🌙</button>
       </div>
     </div>
   </nav>
 
   <!-- HERO -->
-  <header class="relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 grid lg:grid-cols-2 gap-10 items-center">
-      <div>
-        <span class="inline-flex items-center gap-2 text-xs px-3 py-1 rounded-full bg-zinc-100 border border-zinc-200">
-          Weddings • Quinceañeras • Church Events
-        </span>
-        <h1 class="mt-4 text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
-          Story‑driven <span class="text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 to-zinc-500">Videography</span> & Photography
-        </h1>
-        <p class="mt-4 text-zinc-600 max-w-xl">
-          Hi, I’m <strong>Milton</strong>. I capture weddings, quinceañeras, and faith‑based events with cinematic visuals and clean, natural color. Based in Pittsburg, CA and serving the Bay Area. Bilingual: Español / English.
-        </p>
-        <div class="mt-6 flex flex-wrap items-center gap-3">
-          <a href="#work" class="px-4 py-2 rounded-2xl bg-zinc-900 text-white hover:opacity-90">See My Work</a>
-          <a href="#services" class="px-4 py-2 rounded-2xl border border-zinc-300 hover:bg-zinc-50">Services</a>
-        </div>
-        <div class="mt-6 flex items-center gap-6 text-sm text-zinc-500">
-          <span>Bay Area</span>
-          <span>Now booking 2025</span>
-          <span>Español / English</span>
-        </div>
+  
+<header class="relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 grid lg:grid-cols-2 gap-10 items-center">
+    <div>
+      <span class="inline-flex items-center gap-2 text-xs px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800/70 border border-zinc-200 dark:border-zinc-700">
+        Videografía • Fotografía • Ministerios
+      </span>
+      <h1 class="mt-4 text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
+        Todo lo que necesitas para <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-sky-400 dark:from-sky-400 dark:to-sky-300">contar tu historia</span>
+      </h1>
+      <p class="mt-4 text-zinc-600 dark:text-zinc-300 max-w-xl">
+        Portafolio profesional para bodas, quinceañeras y eventos cristianos. Cobertura cinematográfica y fotos limpias. Español / English.
+      </p>
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        <a href="#work" class="px-4 py-2 rounded-2xl bg-zinc-900 text-white hover:opacity-90">Explorar</a>
+        <a href="#contact" class="px-4 py-2 rounded-2xl border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-800">Solicitar cotización</a>
       </div>
-      <div class="relative">
-        <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl ring-1 ring-zinc-200">
-          <img src='assets/images/alondra_1.jpeg' alt='Showreel cover' class='h-full w-full object-cover'/>
-        </div>
-        <a href="#work" class="absolute bottom-4 right-4 inline-flex items-center gap-2 text-sm glass px-3 py-2 rounded-full border border-zinc-200 shadow">
-          Watch reels →
-        </a>
+      <div class="mt-6 flex items-center gap-6 text-sm text-zinc-500 dark:text-zinc-400">
+        <span>Bay Area</span>
+        <span>Now booking 2025</span>
+        <span>Español / English</span>
       </div>
     </div>
-  </header>
+    <div class="relative">
+      <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl ring-1 ring-zinc-200 dark:ring-zinc-800">
+        <img src='assets/images/alondra_1.jpeg' alt='Showreel cover' class='h-full w-full object-cover' loading="lazy"/>
+      </div>
+      <a href="#work" class="absolute bottom-4 right-4 inline-flex items-center gap-2 text-sm glass px-3 py-2 rounded-full border border-zinc-200 dark:border-zinc-700 shadow">
+        Ver reels →
+      </a>
+    </div>
+  </div>
+</header>
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 p-6">
+    <div><p class="text-3xl font-extrabold">6+</p><p class="text-sm text-zinc-500 dark:text-zinc-400">Años creando</p></div>
+    <div><p class="text-3xl font-extrabold">Foto $800</p><p class="text-sm text-zinc-500 dark:text-zinc-400">Paquete inicial</p></div>
+    <div><p class="text-3xl font-extrabold">Video $950</p><p class="text-sm text-zinc-500 dark:text-zinc-400">Premium Film</p></div>
+    <div><p class="text-3xl font-extrabold">ES / EN</p><p class="text-sm text-zinc-500 dark:text-zinc-400">Bilingüe</p></div>
+  </div>
+</section>
+
 
   <!-- WORK -->
   <section id="work" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
     <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-6">Featured Work</h2>
     <div class="flex gap-2 mb-6">
       <button id="tabVideo" class="px-4 py-2 rounded-2xl bg-zinc-900 text-white">Video</button>
-      <button id="tabPhoto" class="px-4 py-2 rounded-2xl border border-zinc-300">Photo</button>
+      <button id="tabPhoto" class="px-4 py-2 rounded-2xl border border-zinc-300 dark:border-zinc-700">Photo</button>
     </div>
     <div id="videoGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <!-- Replace these links with your real reels -->
-      <a href="https://youtube.com/@abnerfilmhouse" target="_blank" class="block group border border-zinc-200 rounded-2xl overflow-hidden">
-        <div class="aspect-video bg-zinc-100 grid place-items-center text-zinc-500">Your Reel Thumbnail</div>
+      <a href="https://youtube.com/@abnerfilmhouse" target="_blank" class="block group border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden">
+        <div class="aspect-video bg-zinc-100 dark:bg-zinc-800 grid place-items-center text-zinc-500 dark:text-zinc-400">Your Reel Thumbnail</div>
         <div class="p-4 flex items-center justify-between">
           <p class="font-medium">Wedding Highlight</p><span>▶</span>
         </div>
       </a>
-      <a href="https://youtube.com/@abnerfilmhouse" target="_blank" class="block group border border-zinc-200 rounded-2xl overflow-hidden">
-        <div class="aspect-video bg-zinc-100 grid place-items-center text-zinc-500">Your Reel Thumbnail</div>
+      <a href="https://youtube.com/@abnerfilmhouse" target="_blank" class="block group border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden">
+        <div class="aspect-video bg-zinc-100 dark:bg-zinc-800 grid place-items-center text-zinc-500 dark:text-zinc-400">Your Reel Thumbnail</div>
         <div class="p-4 flex items-center justify-between">
           <p class="font-medium">Quinceañera Film</p><span>▶</span>
         </div>
       </a>
-      <a href="https://youtube.com/@abnerfilmhouse" target="_blank" class="block group border border-zinc-200 rounded-2xl overflow-hidden">
-        <div class="aspect-video bg-zinc-100 grid place-items-center text-zinc-500">Your Reel Thumbnail</div>
+      <a href="https://youtube.com/@abnerfilmhouse" target="_blank" class="block group border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden">
+        <div class="aspect-video bg-zinc-100 dark:bg-zinc-800 grid place-items-center text-zinc-500 dark:text-zinc-400">Your Reel Thumbnail</div>
         <div class="p-4 flex items-center justify-between">
           <p class="font-medium">Church Event</p><span>▶</span>
         </div>
@@ -119,47 +144,70 @@
     </div>
 
     <div id="photoGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 hidden">
-      <div class='border border-zinc-200 rounded-2xl overflow-hidden'><div class='aspect-[4/5] overflow-hidden'><img src='assets/images/alondra_1.jpeg' class='w-full h-full object-cover'/></div><div class='p-3 text-sm'>Alondra – Portrait</div></div><div class='border border-zinc-200 rounded-2xl overflow-hidden'><div class='aspect-[4/5] overflow-hidden'><img src='assets/images/alondra_2.jpeg' class='w-full h-full object-cover'/></div><div class='p-3 text-sm'>Alondra – Portrait</div></div><div class='border border-zinc-200 rounded-2xl overflow-hidden'><div class='aspect-[4/5] overflow-hidden'><img src='assets/images/alondra_3.jpeg' class='w-full h-full object-cover'/></div><div class='p-3 text-sm'>Alondra – Portrait</div></div><div class='border border-zinc-200 rounded-2xl overflow-hidden'><div class='aspect-[4/5] overflow-hidden'><img src='assets/images/alondra_4.jpeg' class='w-full h-full object-cover'/></div><div class='p-3 text-sm'>Alondra – Portrait</div></div><div class='border border-zinc-200 rounded-2xl overflow-hidden'><div class='aspect-[4/5] overflow-hidden'><img src='assets/images/alondra_5.jpeg' class='w-full h-full object-cover'/></div><div class='p-3 text-sm'>Alondra – Portrait</div></div>
+      <div class='border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden'><div class='aspect-[4/5] overflow-hidden'><img loading="lazy" src='assets/images/alondra_1.jpeg' class='w-full h-full object-cover'/></div><div class='p-3 text-sm'>Alondra – Portrait</div></div><div class='border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden'><div class='aspect-[4/5] overflow-hidden'><img loading="lazy" src='assets/images/alondra_2.jpeg' class='w-full h-full object-cover'/></div><div class='p-3 text-sm'>Alondra – Portrait</div></div><div class='border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden'><div class='aspect-[4/5] overflow-hidden'><img loading="lazy" src='assets/images/alondra_3.jpeg' class='w-full h-full object-cover'/></div><div class='p-3 text-sm'>Alondra – Portrait</div></div><div class='border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden'><div class='aspect-[4/5] overflow-hidden'><img loading="lazy" src='assets/images/alondra_4.jpeg' class='w-full h-full object-cover'/></div><div class='p-3 text-sm'>Alondra – Portrait</div></div><div class='border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden'><div class='aspect-[4/5] overflow-hidden'><img loading="lazy" src='assets/images/alondra_5.jpeg' class='w-full h-full object-cover'/></div><div class='p-3 text-sm'>Alondra – Portrait</div></div>
     </div>
   </section>
 
   <!-- SERVICES -->
-  <section id="services" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-6">Services</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="rounded-2xl border border-zinc-200 p-6">
-        <h3 class="font-semibold text-lg mb-2">Event Videography</h3>
-        <p class="text-sm text-zinc-600">Cinematic coverage for weddings, quinceañeras, church events, and concerts. Multi‑camera, gimbal work, clean audio, and color‑graded delivery.</p>
+  
+<section id="services" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+  <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-6">Servicios</h2>
+  <div class="grid md:grid-cols-3 gap-6">
+    <article class="rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
+      <div class="aspect-video bg-zinc-100 dark:bg-zinc-800"></div>
+      <div class="p-6">
+        <h3 class="font-semibold text-lg">Videografía Premium</h3>
+        <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-1">Cobertura cinematográfica, audio limpio, color final y highlight 3–5 min.</p>
+        <div class="mt-4 flex items-center justify-between">
+          <span class="text-2xl font-bold">$950</span>
+          <a href="#contact" class="text-sky-600 dark:text-sky-400 font-medium">Conoce más →</a>
+        </div>
       </div>
-      <div class="rounded-2xl border border-zinc-200 p-6">
-        <h3 class="font-semibold text-lg mb-2">Portrait & Event Photography</h3>
-        <p class="text-sm text-zinc-600">Natural‑light and flash portraits, family sessions, and events. Fast turnarounds, web galleries, and print‑ready files.</p>
+    </article>
+    <article class="rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
+      <div class="aspect-video bg-zinc-100 dark:bg-zinc-800"></div>
+      <div class="p-6">
+        <h3 class="font-semibold text-lg">Fotografía Esenciales</h3>
+        <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-1">Sesión 90 min, galería web (50+ editadas), archivos listos para imprimir.</p>
+        <div class="mt-4 flex items-center justify-between">
+          <span class="text-2xl font-bold">$800</span>
+          <a href="#contact" class="text-sky-600 dark:text-sky-400 font-medium">Conoce más →</a>
+        </div>
       </div>
-      <div class="rounded-2xl border border-zinc-200 p-6">
-        <h3 class="font-semibold text-lg mb-2">Church & Ministry Media</h3>
-        <p class="text-sm text-zinc-600">Support for worship teams and ministries: rehearsal capture, promo reels, lyrics videos, and testimonies.</p>
+    </article>
+    <article class="rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
+      <div class="aspect-video bg-zinc-100 dark:bg-zinc-800"></div>
+      <div class="p-6">
+        <h3 class="font-semibold text-lg">Iglesias & Ministerios</h3>
+        <p class="text-sm text-zinc-600 dark:text-zinc-300 mt-1">Rehearsal + servicio, promo reel, fotos; planes flexibles para ministerios.</p>
+        <div class="mt-4 flex items-center justify-between">
+          <span class="text-2xl font-bold">Custom</span>
+          <a href="#contact" class="text-sky-600 dark:text-sky-400 font-medium">Conoce más →</a>
+        </div>
       </div>
-    </div>
-  </section>
+    </article>
+  </div>
+</section>
+
 
   <!-- ABOUT -->
   <section id="about" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
     <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-6">About Me</h2>
     <div class="grid lg:grid-cols-2 gap-8 items-center">
       <div>
-        <p class="text-zinc-600 leading-relaxed">
+        <p class="text-zinc-600 dark:text-zinc-300 leading-relaxed">
           I’m Milton Abner, a Bay Area creative and drummer for <em>Príncipe de Paz, Gracia y Verdad</em>. Through Abner Filmhouse, I tell stories with clean composition, steady camera movement, and honest emotion. I’m bilingual (Español/English) and I love serving families and churches with media that feels authentic and timeless.
         </p>
         <ul class="mt-6 grid sm:grid-cols-2 gap-3 text-sm">
-          <li class="p-3 rounded-xl border border-zinc-200">Sony ZV‑E10 • Tamron 17‑70</li>
-          <li class="p-3 rounded-xl border border-zinc-200">Gimbal shots • Clean audio</li>
-          <li class="p-3 rounded-xl border border-zinc-200">Fast turnaround</li>
-          <li class="p-3 rounded-xl border border-zinc-200">Flexible student pricing</li>
+          <li class="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800">Sony ZV‑E10 • Tamron 17‑70</li>
+          <li class="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800">Gimbal shots • Clean audio</li>
+          <li class="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800">Fast turnaround</li>
+          <li class="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800">Flexible student pricing</li>
         </ul>
       </div>
       <div>
-        <div class="aspect-[4/3] rounded-2xl overflow-hidden ring-1 ring-zinc-200">
-          <img src='assets/images/alondra_2.jpeg' alt='Milton behind the camera' class='h-full w-full object-cover'/>
+        <div class="aspect-[4/3] rounded-2xl overflow-hidden ring-1 ring-zinc-200 dark:ring-zinc-800">
+          <img loading="lazy" src='assets/images/alondra_2.jpeg' alt='Milton behind the camera' class='h-full w-full object-cover'/>
         </div>
       </div>
     </div>
@@ -169,10 +217,10 @@
   <section id="pricing" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
     <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-6">Packages</h2>
     <div class="grid md:grid-cols-3 gap-6">
-      <div class="rounded-2xl border border-zinc-200 p-6">
+      <div class="rounded-2xl border border-zinc-200 dark:border-zinc-800 p-6">
         <h3 class="font-semibold text-lg mb-2">Photo – Essentials</h3>
         <p class="text-3xl font-bold">$800</p>
-        <ul class="mt-3 text-sm text-zinc-600 list-disc pl-5 space-y-1">
+        <ul class="mt-3 text-sm text-zinc-600 dark:text-zinc-300 list-disc pl-5 space-y-1">
           <li>90‑minute session</li>
           <li>Online gallery (50+ edited)</li>
           <li>1 location • Print‑ready</li>
@@ -181,50 +229,50 @@
       <div class="rounded-2xl border-2 border-zinc-900 p-6">
         <h3 class="font-semibold text-lg mb-2">Premium Film</h3>
         <p class="text-3xl font-bold">$950</p>
-        <ul class="mt-3 text-sm text-zinc-600 list-disc pl-5 space-y-1">
+        <ul class="mt-3 text-sm text-zinc-600 dark:text-zinc-300 list-disc pl-5 space-y-1">
           <li>8 hrs coverage • 2 cams</li>
           <li>Highlight film (3–5 min)</li>
           <li>Raw ceremony on request</li>
         </ul>
       </div>
-      <div class="rounded-2xl border border-zinc-200 p-6">
+      <div class="rounded-2xl border border-zinc-200 dark:border-zinc-800 p-6">
         <h3 class="font-semibold text-lg mb-2">Church Media Bundle</h3>
         <p class="text-3xl font-bold">Custom</p>
-        <ul class="mt-3 text-sm text-zinc-600 list-disc pl-5 space-y-1">
+        <ul class="mt-3 text-sm text-zinc-600 dark:text-zinc-300 list-disc pl-5 space-y-1">
           <li>Rehearsal + service capture</li>
           <li>Promo reel & photos</li>
           <li>Flexible for ministries</li>
         </ul>
       </div>
     </div>
-    <p class="text-sm text-zinc-500 mt-3">*Prices are starting points; travel fees may apply outside the East Bay.</p>
+    <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-3">*Prices are starting points; travel fees may apply outside the East Bay.</p>
   </section>
 
   <!-- CONTACT -->
   <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
     <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-6">Let’s Work Together</h2>
     <div class="grid lg:grid-cols-2 gap-8">
-      <div class="rounded-2xl border border-zinc-200 p-6">
+      <div class="rounded-2xl border border-zinc-200 dark:border-zinc-800 p-6">
         <h3 class="font-semibold mb-3">Quick Message</h3>
         <form onsubmit="event.preventDefault(); const f=new FormData(event.target); const name=f.get('name'); const email=f.get('email'); const msg=f.get('message'); window.location.href=`mailto:abnerfilmhouse@gmail.com?subject=Inquiry from ${name}&body=${encodeURIComponent(String(msg))}%0D%0A%0D%0AContact: ${email}`">
           <div class="grid gap-3">
-            <input name="name" placeholder="Your name" required class="border border-zinc-300 rounded-xl px-3 py-2"/>
-            <input name="email" type="email" placeholder="Email" required class="border border-zinc-300 rounded-xl px-3 py-2"/>
-            <textarea name="message" placeholder="Tell me about your event (date, city, hours)…" rows="5" required class="border border-zinc-300 rounded-xl px-3 py-2"></textarea>
+            <input name="name" placeholder="Your name" required class="border border-zinc-300 dark:border-zinc-700 rounded-xl px-3 py-2"/>
+            <input name="email" type="email" placeholder="Email" required class="border border-zinc-300 dark:border-zinc-700 rounded-xl px-3 py-2"/>
+            <textarea name="message" placeholder="Tell me about your event (date, city, hours)…" rows="5" required class="border border-zinc-300 dark:border-zinc-700 rounded-xl px-3 py-2"></textarea>
             <button type="submit" class="px-4 py-2 rounded-2xl bg-zinc-900 text-white">Send</button>
           </div>
         </form>
       </div>
       <div class="space-y-4">
-        <a href="tel:+19252762331" class="flex items-center gap-3 p-4 rounded-xl border border-zinc-200 hover:bg-zinc-50">📞 (925) 276-2331</a>
-        <a href="mailto:abnerfilmhouse@gmail.com" class="flex items-center gap-3 p-4 rounded-xl border border-zinc-200 hover:bg-zinc-50">✉️ abnerfilmhouse@gmail.com</a>
+        <a href="tel:+19252762331" class="flex items-center gap-3 p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50">📞 (925) 276-2331</a>
+        <a href="mailto:abnerfilmhouse@gmail.com" class="flex items-center gap-3 p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50">✉️ abnerfilmhouse@gmail.com</a>
         <div class="flex gap-3">
-          <a aria-label="Instagram" href="https://instagram.com/abnerfilmhouse" class="p-3 rounded-xl border border-zinc-200 hover:bg-zinc-50">IG</a>
-          <a aria-label="Facebook" href="https://facebook.com/abnerfilmhouse" class="p-3 rounded-xl border border-zinc-200 hover:bg-zinc-50">FB</a>
-          <a aria-label="YouTube" href="https://youtube.com/@abnerfilmhouse" class="p-3 rounded-xl border border-zinc-200 hover:bg-zinc-50">YT</a>
-          <a aria-label="WhatsApp" href="https://wa.me/19252762331?text=Hola%20Milton%2C%20quiero%20cotizar%20un%20evento%20(Fecha%2C%20Ciudad%2C%20Horas)" class="p-3 rounded-xl border border-zinc-200 hover:bg-zinc-50">WA</a>
+          <a aria-label="Instagram" href="https://instagram.com/abnerfilmhouse" class="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50">IG</a>
+          <a aria-label="Facebook" href="https://facebook.com/abnerfilmhouse" class="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50">FB</a>
+          <a aria-label="YouTube" href="https://youtube.com/@abnerfilmhouse" class="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50">YT</a>
+          <a aria-label="WhatsApp" href="https://wa.me/19252762331?text=Hola%20Milton%2C%20quiero%20cotizar%20un%20evento%20(Fecha%2C%20Ciudad%2C%20Horas)" class="p-3 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50">WA</a>
         </div>
-        <p class="text-sm text-zinc-500">Prefer WhatsApp? <strong>+1 (925) 276-2331</strong></p>
+        <p class="text-sm text-zinc-500 dark:text-zinc-400">Prefer WhatsApp? <strong>+1 (925) 276-2331</strong></p>
       </div>
     </div>
   </section>
@@ -233,7 +281,7 @@
   <footer class="border-t border-zinc-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm">
       <p>© 2025 Abner Filmhouse. All rights reserved.</p>
-      <p class="text-zinc-500">Built with love in the Bay Area.</p>
+      <p class="text-zinc-500 dark:text-zinc-400">Built with love in the Bay Area.</p>
     </div>
   </footer>
 
@@ -245,19 +293,28 @@
     const photoGrid = document.getElementById('photoGrid');
     tabVideo.addEventListener('click', () => {
       tabVideo.classList.add('bg-zinc-900','text-white');
-      tabVideo.classList.remove('border','border-zinc-300');
+      tabVideo.classList.remove('border','border-zinc-300 dark:border-zinc-700');
       tabPhoto.classList.remove('bg-zinc-900','text-white');
-      tabPhoto.classList.add('border','border-zinc-300');
+      tabPhoto.classList.add('border','border-zinc-300 dark:border-zinc-700');
       videoGrid.classList.remove('hidden');
       photoGrid.classList.add('hidden');
     });
     tabPhoto.addEventListener('click', () => {
       tabPhoto.classList.add('bg-zinc-900','text-white');
-      tabPhoto.classList.remove('border','border-zinc-300');
+      tabPhoto.classList.remove('border','border-zinc-300 dark:border-zinc-700');
       tabVideo.classList.remove('bg-zinc-900','text-white');
-      tabVideo.classList.add('border','border-zinc-300');
+      tabVideo.classList.add('border','border-zinc-300 dark:border-zinc-700');
       videoGrid.classList.add('hidden');
       photoGrid.classList.remove('hidden');
+    });
+  </script>
+
+  <script>
+    const themeBtn = document.getElementById('themeToggle');
+    themeBtn?.addEventListener('click', () => {
+      const el = document.documentElement;
+      el.classList.toggle('dark');
+      localStorage.setItem('theme', el.classList.contains('dark') ? 'dark' : 'light');
     });
   </script>
 </body>
