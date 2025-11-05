@@ -1,78 +1,244 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Abner Filmhouse</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.4/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Abner Filmhouse — Visual storytelling for events</title>
+
+  <!-- Tailwind + config (class-based dark) -->
+  <script>window.tailwind = window.tailwind || {}; tailwind.config = { darkMode: 'class' };</script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <meta name="description" content="Abner Filmhouse — Visual storytelling for weddings, birthdays and music. Freelance videographer in the Bay Area." />
+  <link rel="canonical" href="https://abnerfilmhouse.com" />
+
   <style>
-    :root {
-      --bg: #1c1c1c;
-      --text: #f5f5f5;
-      --muted: #c4c4c4;
-      --accent: #e3b505;
-    }
-    body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; }
-    .fade-in { animation: fadeIn 1.3s ease-in-out; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+    :root{ --bg: #1b1b1d; --panel: #161617; --muted: #b5b5b5; --accent: #C6A664; --text: #EAEAEA; }
+    body { background: linear-gradient(180deg, #141416 0%, var(--bg) 100%); color: var(--text); font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+
+    .glass { background: rgba(255,255,255,0.02); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.03); }
+    h1,h2,h3 { font-family: 'Playfair Display', serif; }
+    .fade-in { opacity:0; transform: translateY(8px); transition: all .6s ease; }
+    .fade-in.visible { opacity:1; transform: translateY(0); }
+    a { text-decoration: none; }
   </style>
 </head>
-<body>
+<body class="antialiased">
+
+  <!-- Theme init -->
+  <script>
+    (function(){
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if(saved === 'dark' || (!saved && prefersDark)) document.documentElement.classList.add('dark');
+    })();
+  </script>
+
+  <!-- NAV -->
+  <nav class="fixed inset-x-0 top-4 z-50 px-6">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="assets/images/logo_circle.jpg" alt="Abner Filmhouse" class="h-10 w-10 rounded-full object-cover ring-1 ring-white/5" loading="lazy" />
+        <div class="hidden sm:block text-sm text-[--muted]">Abner Filmhouse</div>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="#work" class="text-sm text-[--muted] hover:text-white">Work</a>
+        <a href="#packages" class="text-sm text-[--muted] hover:text-white">Packages</a>
+        <a href="#contact" class="text-sm text-[--muted] hover:text-white">Contact</a>
+        <a href="#contact" class="ml-3 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[--accent] text-black font-semibold shadow">Request a Quote</a>
+      </div>
+    </div>
+  </nav>
 
   <!-- HERO -->
-  <header class="min-h-screen flex items-center bg-center bg-cover bg-no-repeat relative"
-          style="background-image: url('assets/images/henry-paz-afh21.jpg');">
-    <div class="absolute inset-0 bg-black/60"></div>
-    <div class="relative max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-10 items-center">
+  <header class="min-h-screen flex items-center">
+    <div class="max-w-6xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-10 items-center">
       <div class="space-y-6 fade-in">
+        <img src="assets/images/logo_full.jpg" alt="Abner Filmhouse" class="h-28 object-contain mx-auto lg:mx-0" loading="lazy" />
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
           Visual storytelling for weddings, birthdays, and music.
         </h1>
         <p class="max-w-xl text-[--muted]">
-          I’m a freelance videographer passionate about capturing real emotions and meaningful stories.
-          Every project is an opportunity to grow, serve, and create visuals that reflect authenticity and purpose.
+          Freelance videographer growing in knowledge and experience. I capture honest emotion, cinematic framing and clean audio — tailored for families, churches and musicians in the Bay Area.
         </p>
         <div class="flex flex-wrap gap-3 items-center">
-          <a href="#packages" class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[--accent] text-black font-semibold">
-            Request a Quote
-          </a>
+          <a href="#packages" class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[--accent] text-black font-semibold">Request a Quote</a>
           <a href="#work" class="px-5 py-3 rounded-full border border-white/8 text-[--text]">See Work</a>
         </div>
-        <p class="text-sm text-[--muted] mt-6">
-          For other creative projects or collaborations, <a href="#contact" class="underline">contact me</a>.
-        </p>
+        <p class="text-sm text-[--muted] mt-6">For other creative projects or collaborations, <a href="#contact" class="underline">contact me</a>.</p>
+      </div>
+
+      <!-- Vidflow embed -->
+      <div class="fade-in">
+        <div style="position: relative; padding: 20px; height: 650px;" class="rounded-2xl overflow-hidden glass">
+          <iframe style="position: absolute; top: 0; left: 0; width: 125%; height: 125%; zoom: 0.8; transform: scale(0.8); -webkit-transform: scale(0.8); transform-origin: 0 0; -webkit-transform-origin: 0 0; border-radius:12px;"
+                  src="https://galleries.vidflow.co/embed/d/odiicjt7"
+                  frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen loading="lazy">
+          </iframe>
+        </div>
+        <p class="text-xs text-[--muted] mt-3">Watch a selection of highlights and full event reels.</p>
       </div>
     </div>
   </header>
 
-  <!-- FEATURED WORK -->
-  <section id="work" class="py-20 px-6 max-w-6xl mx-auto">
-    <h2 class="text-4xl font-bold mb-8 text-center">Featured Work</h2>
-    <div style="position: relative; padding: 20px; height: 650px;">
-      <iframe style="position: absolute; top: 0; left: 0; width: 125%; height: 125%;
-          zoom: 0.8; transform: scale(0.8); -webkit-transform: scale(0.8);
-          transform-origin: 0 0; -webkit-transform-origin: 0 0;"
-          src="https://galleries.vidflow.co/embed/d/odiicjt7"
-          frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen>
-      </iframe>
+  <!-- STATS -->
+  <section class="py-12">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 glass rounded-2xl p-6">
+        <div class="text-center">
+          <div class="text-2xl font-bold">6+</div>
+          <div class="text-sm text-[--muted]">Years creating</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold">$800</div>
+          <div class="text-sm text-[--muted]">Signature package</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold">ES / EN</div>
+          <div class="text-sm text-[--muted]">Bilingual</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl font-bold">Bay Area</div>
+          <div class="text-sm text-[--muted]">Available locally</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work" class="py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl font-bold mb-6">Featured Work</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <a href="https://youtube.com/@abnerfilmhouse" target="_blank" class="block rounded-2xl overflow-hidden glass p-4">
+          <div class="aspect-video bg-zinc-800 grid place-items-center text-[--muted]">Wedding Highlight</div>
+          <div class="mt-3 text-sm">Wedding highlight film</div>
+        </a>
+        <a href="https://youtube.com/@abnerfilmhouse" target="_blank" class="block rounded-2xl overflow-hidden glass p-4">
+          <div class="aspect-video bg-zinc-800 grid place-items-center text-[--muted]">Quinceañera Film</div>
+          <div class="mt-3 text-sm">Quinceañera highlight</div>
+        </a>
+        <a href="https://youtube.com/@abnerfilmhouse" target="_blank" class="block rounded-2xl overflow-hidden glass p-4">
+          <div class="aspect-video bg-zinc-800 grid place-items-center text-[--muted]">Church Event</div>
+          <div class="mt-3 text-sm">Service & rehearsal</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section id="packages" class="py-16">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-3xl font-bold mb-6">Packages</h2>
+
+      <article class="rounded-2xl glass p-6 mb-6">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+          <div class="flex-1">
+            <h3 class="text-2xl font-semibold">Essence Package</h3>
+            <p class="text-sm text-[--muted] mt-2">Coverage for intimate events — short highlight, basic edits and downloadable files.</p>
+            <ul class="mt-3 text-sm text-[--muted] list-disc list-inside space-y-1">
+              <li>2 hours coverage</li>
+              <li>One-camera setup</li>
+              <li>Highlight (1–2 min)</li>
+            </ul>
+          </div>
+          <div class="w-full sm:w-40 text-right">
+            <div class="text-3xl font-bold">$700</div>
+            <a href="#contact" class="mt-3 inline-block px-4 py-2 rounded-full bg-[--accent] text-black font-semibold">Book</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="rounded-2xl glass p-6 mb-6 border-2 border-[--accent]">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+          <div class="flex-1">
+            <h3 class="text-2xl font-semibold">Signature Package</h3>
+            <p class="text-sm text-[--muted] mt-2">Includes everything in Essence plus extra coverage and finer edits.</p>
+            <ul class="mt-3 text-sm text-[--muted] list-disc list-inside space-y-1">
+              <li>5 hours coverage</li>
+              <li>Two-camera option</li>
+              <li>Highlight (3–5 min)</li>
+              <li>Color grade & music mix</li>
+            </ul>
+          </div>
+          <div class="w-full sm:w-40 text-right">
+            <div class="text-3xl font-bold">$800</div>
+            <a href="#contact" class="mt-3 inline-block px-4 py-2 rounded-full bg-[--accent] text-black font-semibold">Book</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="rounded-2xl glass p-6 mb-6">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+          <div class="flex-1">
+            <h3 class="text-2xl font-semibold">Cinematic Package</h3>
+            <p class="text-sm text-[--muted] mt-2">Full coverage with cinematic edits, extended timeline and premium deliverables.</p>
+            <ul class="mt-3 text-sm text-[--muted] list-disc list-inside space-y-1">
+              <li>8 hours coverage</li>
+              <li>Multi-camera setup</li>
+              <li>Director-style edit (5–7 min)</li>
+              <li>Extras on request</li>
+            </ul>
+          </div>
+          <div class="w-full sm:w-40 text-right">
+            <div class="text-3xl font-bold">$950</div>
+            <a href="#contact" class="mt-3 inline-block px-4 py-2 rounded-full bg-[--accent] text-black font-semibold">Book</a>
+          </div>
+        </div>
+      </article>
+
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="py-20 px-6 text-center border-t border-white/10">
-    <h2 class="text-3xl font-bold mb-4">Contact</h2>
-    <p class="text-[--muted] mb-6">For bookings or collaborations, feel free to reach out.</p>
-    <div class="space-y-2">
-      <p>Email: <a href="mailto:abnerfilmhouse@gmail.com" class="underline">abnerfilmhouse@gmail.com</a></p>
-      <p>Phone: 925-276-2331</p>
-      <p>Instagram / YouTube / Facebook: <strong>@abnerfilmhouse</strong></p>
+  <section id="contact" class="py-16">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-3xl font-bold mb-4">Contact</h2>
+      <p class="text-[--muted] mb-6">Questions, bookings or other projects — feel free to reach out.</p>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="rounded-2xl glass p-6">
+          <h3 class="font-semibold mb-2">Message me</h3>
+          <form onsubmit="event.preventDefault(); const f=new FormData(event.target); const name=f.get('name'); const email=f.get('email'); const msg=f.get('message'); window.location.href=`mailto:abnerfilmhouse@gmail.com?subject=Booking request from ${name}&body=${encodeURIComponent(String(msg))}%0D%0A%0D%0AContact: ${email}`">
+            <div class="grid gap-3">
+              <input name="name" placeholder="Your name" required class="rounded-xl p-3 bg-transparent border border-white/6" />
+              <input name="email" type="email" placeholder="Email" required class="rounded-xl p-3 bg-transparent border border-white/6" />
+              <textarea name="message" rows="5" placeholder="Tell me about your event (date, city, hours)..." required class="rounded-xl p-3 bg-transparent border border-white/6"></textarea>
+              <button type="submit" class="mt-2 inline-flex px-4 py-2 rounded-full bg-[--accent] text-black font-semibold">Request a Quote</button>
+            </div>
+          </form>
+        </div>
+        <div class="space-y-4">
+          <div class="rounded-2xl glass p-6">
+            <h3 class="font-semibold mb-2">Contact details</h3>
+            <p class="text-[--muted]">Instagram: <a href="https://instagram.com/abnerfilmhouse" target="_blank" class="underline">@abnerfilmhouse</a></p>
+            <p class="text-[--muted]">Email: <a href="mailto:abnerfilmhouse@gmail.com" class="underline">abnerfilmhouse@gmail.com</a></p>
+            <p class="text-[--muted]">Phone: <a href="tel:+19252762331" class="underline">+1 (925) 276-2331</a></p>
+          </div>
+          <div class="rounded-2xl glass p-6">
+            <h3 class="font-semibold mb-2">Other projects</h3>
+            <p class="text-[--muted]">For other creative projects or collaborations, contact me and I'll be glad to discuss ideas and availability.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <footer class="py-10 text-center text-sm text-[--muted] border-t border-white/10">
-    © <span id="year"></span> Abner Filmhouse. All rights reserved.
+  <!-- FOOTER -->
+  <footer class="py-8">
+    <div class="max-w-6xl mx-auto px-6 text-center text-[--muted]">
+      <p>© 2025 Abner Filmhouse — Built with care.</p>
+    </div>
   </footer>
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    // simple reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+    }, {threshold: 0.08});
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
